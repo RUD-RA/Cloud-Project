@@ -1,0 +1,259 @@
+.mynav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.nav-ele {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4vw;
+  height: 4.4vh;
+  font-size: 1.8vh;
+  font-weight: bold;
+  font-family: "Inika";
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+}
+.nav-ele:hover {
+  transition: 0.6s;
+  background-color: black;
+  border-radius: 40px;
+  color: white;
+}
+.logo {
+  width: 30px;
+  height: 30px;
+  background-color: grey;
+  border-radius: 50%;
+}
+.create-ele {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2vw;
+}
+.navsearch {
+  width: 65%;
+  background-color: rgb(230, 227, 227);
+  padding: 0.5vw;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1vw;
+}
+.search-icon {
+  width: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: baseline;
+  font-size: 2vw;
+  margin-right: 3px;
+  color: grey;
+  font-weight: bold;
+}
+.last {
+  width: 35px;
+  font-size: 1.5vw;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 0.1vw 0.2vw;
+}
+.last:hover {
+  background-color: rgb(170, 169, 169, 0.5);
+  color: inherit;
+  transition: 0.3s;
+}
+.icons {
+  font-size: 1.5vw;
+  border-radius: 50%;
+  width: fit-content;
+  padding: 0.2vw 0.5vw;
+}
+.icons:hover {
+  background-color: rgb(170, 169, 169, 0.5);
+  color: inherit;
+  transition: 0.3s;
+}
+
+.navsearch input {
+  width: 100%;
+  height: 2.5vh;
+  background: transparent;
+  outline: none;
+  border: none;
+  font-size: 1.2vw;
+  font-family: "Bree serif";
+}
+.body-con {
+  width: 100%;
+  height: 100vh;
+  margin-top: 10px;
+  overflow: scroll;
+  background-color: rgb(219, 218, 218);
+  display: flex;
+
+  justify-content: center;
+}
+.pinwrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15vw, 1fr));
+  width: 100%;
+}
+
+.pin {
+  width: 100%;
+  max-width: 15vw;
+  height: 40vh;
+  margin: 10px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 4px -2px 30px 4px rgb(255, 255, 255),
+    7px 15px 30px 3px rgb(146, 146, 146);
+  border-radius: 20px;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background-color: rgb(0, 0, 0, 0.4);
+  width: inherit;
+  height: inherit;
+  border-radius: 20px;
+  opacity: 0;
+}
+.overlay:hover {
+  transition: 0.5s;
+  opacity: 1;
+}
+.title {
+  color: white;
+  display: flex;
+  align-self: left;
+  font-size: 1.4vw;
+  padding: 0.4vw;
+  text-shadow: 0px 0px black;
+  width: fit-content;
+  height: 10%;
+  justify-content: center;
+  margin-left: 1.5vw;
+  margin-top: 10px;
+  font-family: "Bree Serif";
+}
+.options {
+  color: white;
+  display: flex;
+  width: 90%;
+  height: 80%;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+  display: flex;
+  gap: 20px;
+  font-size: 1.3vw;
+}
+.pin img {
+  border-radius: 20px;
+  width: 100%;
+  height: 100%;
+}
+.body-con::-webkit-scrollbar {
+  width: 0.1px;
+}
+.createpannel {
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  background-color: rgb(255, 255, 255);
+  transform: translate(20%, -120%);
+  border-radius: 20px;
+  display: flex;
+}
+.left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.upld-con {
+  width: 60%;
+  height: 70%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 4px 10px 60px 4px rgba(157, 158, 158, 0.295);
+}
+.upld-con label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.right {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.ins-con {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  color: #000;
+  padding-top: 5vh;
+}
+
+.ins-con input {
+  width: 25vw;
+  padding: 1vw;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.title1{
+  color: #000;
+  display: flex;
+  align-self: left;
+  font-size: 1.4vw;
+  padding: 0.4vw;
+  text-shadow: 0px 0px black;
+  width: fit-content;
+  height: 10%;
+  justify-content: center;
+  margin-left: 1.5vw;
+  margin-top: 10px;
+  font-family: "Bree Serif";
+}
+
+.ins-con button {
+  height: 6vh;
+  border-radius: 20px;
+  background-color: red;
+  font-size: 1.5vw;
+  font-family: "Bree Serif";
+  color: white;
+  cursor: pointer;
+  border-color: white;
+  box-shadow: 5px 10px 20px 4px rgb(207, 207, 207);
+}
+
+.close {
+  width: 10%;
+  height: 50px;
+  margin-left: auto;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4vh;
+  cursor: pointer;
+}
