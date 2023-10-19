@@ -99,7 +99,7 @@ function Home() {
           </div>
 
           <div className="upld-con" style={{ height: "100px", width: "95%" }}>
-            <label htmlFor="fileInput" style={{ fontFamily: "Bree Serif" }}>
+            <label style={{ fontFamily: "Bree Serif" }}>
               Download an image
             </label>
             <button
