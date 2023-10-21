@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsBellFill } from "react-icons/bs";
-import { AiFillMessage, AiOutlineClose } from "react-icons/ai";
+import { AiFillMessage, AiFillSecurityScan, AiOutlineClose } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { BiSearchAlt2 } from "react-icons/bi"
 import { FiMoreVertical } from "react-icons/fi"
@@ -8,13 +8,35 @@ import { BsDownload } from "react-icons/bs"
 import img1 from "../Assets/download.jpeg"
 import img2 from "../Assets/cat.jpeg"
 import img3 from "../Assets/goku.jpeg"
-
-
 import "./homestyle.css";
 
 function Home() {
-    const [isopen, setIsopen] = useState(false);
 
+    const [imageUrls, setImageUrls] = useState([]);
+    const myArray = ['60vh', '30vh', '35vh', '50vh', '40vh', '60vh'];
+    function getRandomElement(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+    const randomElement = getRandomElement(myArray);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await fetch('https://2cs1fcufue.execute-api.us-west-2.amazonaws.com/getallimage');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setImageUrls(data);
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    const [isopen, setIsopen] = useState(false);
     const openmenu = () => {
         if (isopen == false) {
             setIsopen(true)
@@ -62,6 +84,16 @@ function Home() {
                             <div className="options"><BsDownload /> <FiMoreVertical /></div>
                         </div>
                     </div>
+                    {imageUrls.map((url, index) =>
+                    (<div className="pin" style={{ height: randomElement }} key={index}>
+                        <img src={url} alt="image" />
+                        <div className="overlay">
+                            <div className="title">Goku</div>
+                            {console.log(randomElement)}
+                            <div className="options"><BsDownload /> <FiMoreVertical /></div>
+                        </div>
+                    </div>
+                    ))}
                 </div>
             </div>
             {isopen && <div className="createpannel">
@@ -75,11 +107,7 @@ function Home() {
                     <div className="close" onClick={openmenu}><AiOutlineClose /></div>
                     <div className="ins-con">
                         <label className='title1'>Title</label>
-                        <input type="text" className='inputs' />
-                        <label className='title1'>Owner</label>
-                        <input type="text" className='inputs' />
-                        <label className='title1'>Email</label>
-                        <input type="text" className='inputs' /><br />
+                        <input type="text" className='inputs' /><br/>
                         <button >Submit</button>
                     </div>
                 </div>
