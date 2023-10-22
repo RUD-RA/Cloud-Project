@@ -24,9 +24,13 @@
   color: white;
 }
 .logo {
-  width: 30px;
-  height: 30px;
-  background-color: grey;
+  width: 60px;
+  height: 60px;
+}
+.logo1 {
+  width: 35px;
+  height: 35px;
+  background-color: rgb(184, 234, 234);
   border-radius: 50%;
 }
 .create-ele {
@@ -167,7 +171,7 @@
   position: absolute;
   width: 70%;
   height: 80%;
-  background-color: rgb(255, 255, 255);
+  background-color: white;
   transform: translate(20%, -120%);
   border-radius: 20px;
   display: flex;
@@ -210,6 +214,7 @@
   gap: 2px;
   color: #000;
   padding-top: 5vh;
+  margin-top: 10vh;
 }
 
 .ins-con input {
@@ -224,7 +229,8 @@
   display: flex;
   align-self: left;
   font-size: 1.4vw;
-  padding: 0.4vw;
+  padding-top: 0.9vw;
+  padding-bottom: 0.8vw;
   text-shadow: 0px 0px black;
   width: fit-content;
   height: 10%;
