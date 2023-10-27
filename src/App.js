@@ -5,7 +5,8 @@ import ImageComponent from "./Pages/test";
 function App() {
   return (
     <div className="App">
-      <Home />
+      {/* <Home /> */}
+      <ImageComponent />
    
     </div>
   );
