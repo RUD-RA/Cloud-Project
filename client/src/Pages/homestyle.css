@@ -115,9 +115,17 @@
   margin: 10px;
   cursor: pointer;
   position: relative;
-  box-shadow: 4px -2px 30px 4px rgb(255, 255, 255),
-    7px 15px 30px 3px rgb(146, 146, 146);
+  box-shadow: 4px -2px 30px 4px rgb(146, 145, 145, 0.6),
+    7px 15px 30px 3px rgb(107, 107, 107);
   border-radius: 20px;
+  transition: 0.4s;
+}
+
+.pin:hover {
+  transform: scale(120%);
+  z-index: 100;
+  box-shadow: 0px -2px 30px 4px rgba(44, 44, 44, 0.6),
+    0px 15px 30px 3px rgb(107, 107, 107);
 }
 
 .overlay {
@@ -132,6 +140,10 @@
 .overlay:hover {
   transition: 0.5s;
   opacity: 1;
+}
+.download {
+  text-decoration: none;
+  color: white;
 }
 .title {
   color: white;
@@ -224,7 +236,7 @@
   border-bottom: 1px solid black;
 }
 
-.title1{
+.title1 {
   color: #000;
   display: flex;
   align-self: left;

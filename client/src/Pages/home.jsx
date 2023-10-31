@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import { BsBellFill } from "react-icons/bs";
 import {
   AiFillMessage,
-  AiFillSecurityScan,
   AiOutlineClose,
 } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { FiMoreVertical } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
-import img1 from "../Assets/download.jpeg";
-import img2 from "../Assets/cat.jpeg";
-import img3 from "../Assets/goku.jpeg";
 import "./homestyle.css";
 
 import { handleUploadClick } from "./uploadFile.jsx";
@@ -85,8 +81,8 @@ function Home() {
           <div>
             <img
               className="logo1"
-              src="https://img.icons8.com/color/96/checked-user-male--v1.png"
-              alt="checked-user-male--v1"
+              src="https://img.icons8.com/ios-filled/50/user-male-circle.png"
+              alt="user-male-circle"
             />
           </div>
         </div>
@@ -96,41 +92,18 @@ function Home() {
       </nav>
       <div className="body-con">
         <div className="pinwrapper">
-          <div className="pin">
-            <img src={img1} alt="Anime" />
-            <div className="overlay">
-              <div className="title">Anime</div>
-              <div className="options">
-                <BsDownload /> <FiMoreVertical />
-              </div>
-            </div>
-          </div>
-          <div className="pin" style={{ height: "30vh" }}>
-            <img src={img2} alt="Cat" />
-            <div className="overlay">
-              <div className="title">Cat</div>
-              <div className="options">
-                <BsDownload /> <FiMoreVertical />
-              </div>
-            </div>
-          </div>
-          <div className="pin" style={{ height: "60vh" }}>
-            <img src={img3} alt="Goku" />
-            <div className="overlay">
-              <div className="title">Goku</div>
-              <div className="options">
-                <BsDownload /> <FiMoreVertical />
-              </div>
-            </div>
-          </div>
           {imageUrls.map((url, index) => (
-            <div className="pin" style={{ height: randomElement }} key={index}>
+            <div className="pin" style={{ height: "40vh" }} key={index}>
               <img src={url} alt="Display" />
               <div className="overlay">
-                <div className="title">Goku</div>
-                {console.log(randomElement)}
+                <div className="title">
+                  {url.split("/").pop().split(".").slice(0, -1).join(".")}
+                </div>
                 <div className="options">
-                  <BsDownload /> <FiMoreVertical />
+                  <a href={url} target="_blank" rel="noreferrer">
+                    <BsDownload className="download" />{" "}
+                  </a>
+                  <FiMoreVertical />
                 </div>
               </div>
             </div>
@@ -158,7 +131,7 @@ function Home() {
             </div>
             <div className="ins-con">
               <label className="title1">Title</label>
-              <input type="text" className="inputs" />
+              <input type="text" className="inputs" id="key" />
               <br />
               <button onClick={handleUploadClick}>Submit</button>
             </div>
