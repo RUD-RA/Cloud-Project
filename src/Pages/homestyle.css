@@ -116,7 +116,7 @@
   margin: 10px;
   cursor: pointer;
   position: relative;
-  box-shadow: 4px -2px 30px 4px rgb(146, 145, 145,.6),
+  box-shadow: 4px -2px 30px 4px rgb(146, 145, 145, 0.6),
     7px 15px 30px 3px rgb(107, 107, 107);
   border-radius: 20px;
   transition: 0.4s;
@@ -141,6 +141,11 @@
 .overlay:hover {
   transition: 0.5s;
   opacity: 1;
+}
+
+.download {
+  text-decoration: none;
+  color: white;
 }
 .title {
   color: white;

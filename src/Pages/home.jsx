@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { BsBellFill } from "react-icons/bs";
-import { AiFillMessage, AiFillSecurityScan, AiOutlineClose } from "react-icons/ai";
+import { AiFillMessage, AiOutlineClose } from "react-icons/ai";
 import { RiArrowDropDownLine } from "react-icons/ri"
 import { BiSearchAlt2 } from "react-icons/bi"
 import { FiMoreVertical } from "react-icons/fi"
 import { BsDownload } from "react-icons/bs"
-import img1 from "../Assets/download.jpeg"
-import img2 from "../Assets/cat.jpeg"
-import img3 from "../Assets/goku.jpeg"
-import black from "../Assets/black.jpeg";
-import white from "../Assets/white.jpeg"
 import "./homestyle.css";
 
 function Home() {
 
     const [imageUrls, setImageUrls] = useState([]);
-    const myArray = ['60vh', '30vh', '35vh', '50vh', '40vh', '60vh'];
-    function getRandomElement(arr) {
-        const randomIndex = Math.floor(Math.random() * arr.length);
-        return arr[randomIndex];
-    }
-    const randomElement = getRandomElement(myArray);
     useEffect(() => {
         async function fetchData() {
             try {
@@ -40,7 +29,7 @@ function Home() {
 
     const [isopen, setIsopen] = useState(false);
     const openmenu = () => {
-        if (isopen == false) {
+        if (isopen === false) {
             setIsopen(true)
         }
         else {
@@ -91,41 +80,13 @@ function Home() {
             </nav>
             <div className="body-con">
                 <div className="pinwrapper">
-                    <div className="pin" style={{ height: "40vh" }}>
-                        <img src={img1} alt="Anime" />
-                        <div className="overlay">
-                            <div className="title">Anime</div>
-                            <div className="options">
-                                <BsDownload /> <FiMoreVertical />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="pin" style={{ height: "40vh" }}>
-                        <img src={img2} alt="Cat" />
-                        <div className="overlay">
-                            <div className="title">Cat</div>
-                            <div className="options">
-                                <BsDownload /> <FiMoreVertical />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="pin" style={{ height: "40vh" }}>
-                        <img src={black} alt="Goku" />
-                        <div className="overlay">
-                            <div className="title">Gojo</div>
-                            <div className="options">
-                                <BsDownload /> <FiMoreVertical />
-                            </div>
-                        </div>
-                    </div>
                     {imageUrls.map((url, index) => (
                         <div className="pin" style={{ height: "40vh" }} key={index}>
                             <img src={url} alt="Display" />
                             <div className="overlay">
                                 <div className="title">{url.split('/').pop().split('.').slice(0, -1).join('.')}</div>
-                                {console.log(randomElement)}
                                 <div className="options">
-                                    <BsDownload /> <FiMoreVertical />
+                                    <a href={url} target='_blank' rel='noreferrer'><BsDownload className='download'  /> </a><FiMoreVertical />
                                 </div>
                             </div>
                         </div>
