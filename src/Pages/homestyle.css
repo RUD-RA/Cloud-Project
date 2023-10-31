@@ -24,9 +24,13 @@
   color: white;
 }
 .logo {
-  width: 30px;
-  height: 30px;
-  background-color: grey;
+  width: 60px;
+  height: 60px;
+}
+.logo1 {
+  width: 35px;
+  height: 35px;
+  background-color: rgb(184, 234, 234);
   border-radius: 50%;
 }
 .create-ele {
@@ -102,6 +106,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15vw, 1fr));
   width: 100%;
+  padding: 4vh;
 }
 
 .pin {
@@ -111,15 +116,23 @@
   margin: 10px;
   cursor: pointer;
   position: relative;
-  box-shadow: 4px -2px 30px 4px rgb(255, 255, 255),
-    7px 15px 30px 3px rgb(146, 146, 146);
+  box-shadow: 4px -2px 30px 4px rgb(146, 145, 145,.6),
+    7px 15px 30px 3px rgb(107, 107, 107);
   border-radius: 20px;
+  transition: 0.4s;
+}
+
+.pin:hover {
+  transform: scale(120%);
+  z-index: 100;
+  box-shadow: 0px -2px 30px 4px rgba(44, 44, 44, 0.6),
+    0px 15px 30px 3px rgb(107, 107, 107);
 }
 
 .overlay {
   position: absolute;
   bottom: 0;
-  background-color: rgb(0, 0, 0, 0.4);
+  /* background-color: rgba(128, 128, 128, 0.158); */
   width: inherit;
   height: inherit;
   border-radius: 20px;
@@ -220,7 +233,7 @@
   border-bottom: 1px solid black;
 }
 
-.title1{
+.title1 {
   color: #000;
   display: flex;
   align-self: left;

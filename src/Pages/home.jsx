@@ -8,6 +8,8 @@ import { BsDownload } from "react-icons/bs"
 import img1 from "../Assets/download.jpeg"
 import img2 from "../Assets/cat.jpeg"
 import img3 from "../Assets/goku.jpeg"
+import black from "../Assets/black.jpeg";
+import white from "../Assets/white.jpeg"
 import "./homestyle.css";
 
 function Home() {
@@ -47,71 +49,117 @@ function Home() {
     }
     return (
         <div>
-            <nav className='mynav'>
-                <div className="logo" style={{ marginLeft: "10px" }}></div>
+            <nav className="mynav">
+                <div style={{ marginLeft: "15px" }}>
+                    <img
+                        className="logo"
+                        src="https://img.icons8.com/bubbles/100/stack-of-photos.png"
+                        alt="website-logo"
+                    />
+                </div>
                 <div className="nav-ele">Home</div>
                 <div className="nav-ele">Explore</div>
-                <div className="nav-ele"><div className="create-ele " onClick={openmenu}>Create <RiArrowDropDownLine /></div> </div>
-                <div className="navsearch">
-                    <div className="search-icon"><BiSearchAlt2 /></div>
-                    <input type="text" placeholder='Search' />
+                <div className="nav-ele">
+                    <div className="create-ele " onClick={openmenu}>
+                        Create <RiArrowDropDownLine />
+                    </div>
                 </div>
-                <div className="nav-ele icons"><BsBellFill /></div>
-                <div className="nav-ele icons"><AiFillMessage /></div>
-                <div className="nav-ele icons"><div className="logo"></div></div>
-                <div className="nav-ele last"><RiArrowDropDownLine /></div>
+                <div className="navsearch">
+                    <div className="search-icon">
+                        <BiSearchAlt2 />
+                    </div>
+                    <input type="text" placeholder="Search" />
+                </div>
+                <div className="nav-ele icons">
+                    <BsBellFill />
+                </div>
+                <div className="nav-ele icons">
+                    <AiFillMessage />
+                </div>
+                <div className="nav-ele icons">
+                    <div>
+                        <img
+                            className="logo1"
+                            src="https://img.icons8.com/color/96/checked-user-male--v1.png"
+                            alt="checked-user-male--v1"
+                        />
+                    </div>
+                </div>
+                <div className="nav-ele last">
+                    <RiArrowDropDownLine />
+                </div>
             </nav>
             <div className="body-con">
                 <div className="pinwrapper">
-                    <div className="pin">
-                        <img src={img1} alt="image" />
+                    <div className="pin" style={{ height: "40vh" }}>
+                        <img src={img1} alt="Anime" />
                         <div className="overlay">
                             <div className="title">Anime</div>
-                            <div className="options"><BsDownload /> <FiMoreVertical /></div>
+                            <div className="options">
+                                <BsDownload /> <FiMoreVertical />
+                            </div>
                         </div>
                     </div>
-                    <div className="pin" style={{ height: "30vh" }}>
-                        <img src={img2} alt="image" />
+                    <div className="pin" style={{ height: "40vh" }}>
+                        <img src={img2} alt="Cat" />
                         <div className="overlay">
                             <div className="title">Cat</div>
-                            <div className="options"><BsDownload /> <FiMoreVertical /></div>
+                            <div className="options">
+                                <BsDownload /> <FiMoreVertical />
+                            </div>
                         </div>
                     </div>
-                    <div className="pin" style={{ height: "60vh" }}>
-                        <img src={img3} alt="image" />
+                    <div className="pin" style={{ height: "40vh" }}>
+                        <img src={black} alt="Goku" />
                         <div className="overlay">
-                            <div className="title">Goku</div>
-                            <div className="options"><BsDownload /> <FiMoreVertical /></div>
+                            <div className="title">Gojo</div>
+                            <div className="options">
+                                <BsDownload /> <FiMoreVertical />
+                            </div>
                         </div>
                     </div>
-                    {imageUrls.map((url, index) =>
-                    (<div className="pin" style={{ height: randomElement }} key={index}>
-                        <img src={url} alt="image" />
-                        <div className="overlay">
-                            <div className="title">Goku</div>
-                            {console.log(randomElement)}
-                            <div className="options"><BsDownload /> <FiMoreVertical /></div>
+                    {imageUrls.map((url, index) => (
+                        <div className="pin" style={{ height: "40vh" }} key={index}>
+                            <img src={url} alt="Display" />
+                            <div className="overlay">
+                                <div className="title">{url.split('/').pop().split('.').slice(0, -1).join('.')}</div>
+                                {console.log(randomElement)}
+                                <div className="options">
+                                    <BsDownload /> <FiMoreVertical />
+                                </div>
+                            </div>
                         </div>
-                    </div>
                     ))}
                 </div>
             </div>
-            {isopen && <div className="createpannel">
-                <div className="left">
-                    <div className="upld-con">
-                        <input type='file' id='select' style={{ display: "none" }} />
-                        <label htmlFor='select' style={{ fontFamily: "Bree Serif" }} >Select an image</label>
+            {isopen && (
+                <div className="createpannel">
+                    <div className="left">
+                        <div className="upld-con">
+                            <input
+                                type="file"
+                                id="fileInput"
+                                style={{ display: "none" }}
+                                accept="image/*"
+                            />
+                            <label htmlFor="fileInput" style={{ fontFamily: "Bree Serif" }}>
+                                Select an image
+                            </label>
+                        </div>
+                    </div>
+                    <div className="right">
+                        <div className="close" onClick={openmenu}>
+                            <AiOutlineClose />
+                        </div>
+                        <div className="ins-con">
+                            <label className="title1">Title</label>
+                            <input type="text" className="inputs" />
+                            <br />
+                            <button >Submit</button>
+                        </div>
                     </div>
                 </div>
-                <div className="right">
-                    <div className="close" onClick={openmenu}><AiOutlineClose /></div>
-                    <div className="ins-con">
-                        <label className='title1'>Title</label>
-                        <input type="text" className='inputs' /><br/>
-                        <button >Submit</button>
-                    </div>
-                </div>
-            </div>}
+            )}
         </div>
     )
 }
