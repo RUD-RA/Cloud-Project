@@ -145,6 +145,10 @@
   text-decoration: none;
   color: white;
 }
+.download:hover {
+  transform: scale(120%);
+  color: grey;
+}
 .title {
   color: white;
   display: flex;

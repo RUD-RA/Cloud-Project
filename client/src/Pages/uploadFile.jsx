@@ -25,9 +25,11 @@ export function handleUploadClick() {
       type = ".jpg";
     } else if (selectedFile.type === "image/png") {
       type = ".png";
-    } else if (selectedFile.type === "image/svg") {
-      type = ".svg";
-    } else if (selectedFile.type === "image/gif") {
+    } 
+    // else if (selectedFile.type === "image/svg+xml") {
+    //   type = ".svg";
+    // } 
+    else if (selectedFile.type === "image/gif") {
       type = ".gif";
     }
 
@@ -39,6 +41,7 @@ export function handleUploadClick() {
       Bucket: "imageproject101",
       Key: filename + type,
       Body: selectedFile,
+      ContentType: selectedFile.type
     };
 
     s3.upload(params, (err, data) => {
