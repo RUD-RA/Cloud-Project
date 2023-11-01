@@ -121,6 +121,14 @@
   border-radius: 20px;
   transition: 0.4s;
 }
+.image-preview {
+  width: 30%;
+  height: 70%;
+  z-index: 99;
+  border-radius: inherit;
+  position: absolute;
+  bottom: 10;
+}
 
 .pin:hover {
   transform: scale(120%);
@@ -146,6 +154,10 @@
 .download {
   text-decoration: none;
   color: white;
+}
+.download:hover {
+  color: gray;
+  transition: 0.3s;
 }
 .title {
   color: white;

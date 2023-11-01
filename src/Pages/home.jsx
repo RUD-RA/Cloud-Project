@@ -1,26 +1,39 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { BsBellFill } from "react-icons/bs";
-import { AiFillMessage, AiOutlineClose } from "react-icons/ai";
-import { RiArrowDropDownLine } from "react-icons/ri"
-import { BiSearchAlt2 } from "react-icons/bi"
-import { FiMoreVertical } from "react-icons/fi"
-import { BsDownload } from "react-icons/bs"
+import {
+    AiFillMessage,
+    AiOutlineClose,
+} from "react-icons/ai";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import { BiSearchAlt2 } from "react-icons/bi";
+import { FiMoreVertical } from "react-icons/fi";
+import { BsDownload } from "react-icons/bs";
 import "./homestyle.css";
+import { handleUploadClick } from "./uploadfile.jsx"
 
 function Home() {
-
     const [imageUrls, setImageUrls] = useState([]);
+    const [imagePreview, setImagePreview] = useState(null);
+    const [file, setFile] = useState([]);
+    const myArray = ["60vh", "30vh", "35vh", "50vh", "40vh", "60vh"];
+    function getRandomElement(arr) {
+        const randomIndex = Math.floor(Math.random() * arr.length);
+        return arr[randomIndex];
+    }
+    const randomElement = getRandomElement(myArray);
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await fetch('https://2cs1fcufue.execute-api.us-west-2.amazonaws.com/getallimage');
+                const response = await fetch(
+                    "https://2cs1fcufue.execute-api.us-west-2.amazonaws.com/getallimage"
+                );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
                 setImageUrls(data);
             } catch (error) {
-                console.error('Error:', error);
+                console.error("Error:", error);
             }
         }
 
@@ -30,12 +43,20 @@ function Home() {
     const [isopen, setIsopen] = useState(false);
     const openmenu = () => {
         if (isopen === false) {
-            setIsopen(true)
+            setIsopen(true);
+        } else {
+            setIsopen(false);
         }
-        else {
-            setIsopen(false)
+    };
+
+    const handleFileSelect = (e) => {
+        const selectedFile = e.target.files[0];
+        setFile(selectedFile);
+        if (selectedFile) {
+            setImagePreview(URL.createObjectURL(selectedFile));
         }
-    }
+    };
+
     return (
         <div>
             <nav className="mynav">
@@ -85,8 +106,9 @@ function Home() {
                             <img src={url} alt="Display" />
                             <div className="overlay">
                                 <div className="title">{url.split('/').pop().split('.').slice(0, -1).join('.')}</div>
+                                {console.log(randomElement)}
                                 <div className="options">
-                                    <a href={url} target='_blank' rel='noreferrer'><BsDownload className='download'  /> </a><FiMoreVertical />
+                                    <a href={url} target='_blank' rel='noreferrer'><BsDownload className='download' /> </a><FiMoreVertical />
                                 </div>
                             </div>
                         </div>
@@ -102,10 +124,12 @@ function Home() {
                                 id="fileInput"
                                 style={{ display: "none" }}
                                 accept="image/*"
+                                onChange={handleFileSelect}
                             />
                             <label htmlFor="fileInput" style={{ fontFamily: "Bree Serif" }}>
                                 Select an image
                             </label>
+                            {imagePreview && <img src={imagePreview} alt="Preview" className="image-preview" />}
                         </div>
                     </div>
                     <div className="right">
@@ -116,13 +140,15 @@ function Home() {
                             <label className="title1">Title</label>
                             <input type="text" className="inputs" />
                             <br />
-                            <button >Submit</button>
+                            <button onClick={() => {
+                                handleUploadClick(file)
+                            }}>Submit</button>
                         </div>
                     </div>
                 </div>
             )}
         </div>
-    )
+    );
 }
 
-export default Home
+export default Home;
