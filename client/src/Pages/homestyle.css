@@ -106,6 +106,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15vw, 1fr));
   width: 100%;
+  padding: 4vh;
 }
 
 .pin {
@@ -120,6 +121,14 @@
   border-radius: 20px;
   transition: 0.4s;
 }
+.image-preview {
+  width: 30%;
+  height: 70%;
+  z-index: 99;
+  border-radius: inherit;
+  position: absolute;
+  bottom: 10;
+}
 
 .pin:hover {
   transform: scale(120%);
@@ -131,7 +140,7 @@
 .overlay {
   position: absolute;
   bottom: 0;
-  background-color: rgb(0, 0, 0, 0.4);
+  /* background-color: rgba(128, 128, 128, 0.158); */
   width: inherit;
   height: inherit;
   border-radius: 20px;
@@ -141,13 +150,14 @@
   transition: 0.5s;
   opacity: 1;
 }
+
 .download {
   text-decoration: none;
   color: white;
 }
 .download:hover {
-  transform: scale(120%);
-  color: grey;
+  color: gray;
+  transition: 0.3s;
 }
 .title {
   color: white;
