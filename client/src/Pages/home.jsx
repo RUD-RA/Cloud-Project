@@ -10,8 +10,16 @@ import { FiMoreVertical } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
 import "./homestyle.css";
 import { handleUploadClick } from "./uploadFile.jsx"
+import { Link } from 'react-router-dom';
+import { UserContext } from '../context/userContext.jsx'
+import { useContext } from 'react';
 
 function Home() {
+    const { currentUser } = useContext(UserContext)
+    const { user } = currentUser
+    console.log(user)
+    console.log(currentUser)
+
     const [imageUrls, setImageUrls] = useState([]);
     const [imagePreview, setImagePreview] = useState(null);
     const [file, setFile] = useState([]);
@@ -67,8 +75,6 @@ function Home() {
                         alt="website-logo"
                     />
                 </div>
-                <div className="nav-ele">Home</div>
-                <div className="nav-ele">Explore</div>
                 <div className="nav-ele">
                     <div className="create-ele " onClick={openmenu}>
                         Create <RiArrowDropDownLine />
@@ -80,23 +86,21 @@ function Home() {
                     </div>
                     <input type="text" placeholder="Search" />
                 </div>
-                <div className="nav-ele icons">
-                    <BsBellFill />
+                <div className="nav-ele">
+                    <Link to='/login'>
+                        <li>Login</li>
+                    </Link>
                 </div>
-                <div className="nav-ele icons">
-                    <AiFillMessage />
+                <div className="nav-ele">
+                    <Link className='custom-link' to='/register'>
+                        <li>Reg</li>
+                    </Link>
                 </div>
+
                 <div className="nav-ele icons">
-                    <div>
-                        <img
-                            className="logo1"
-                            src="https://img.icons8.com/color/96/checked-user-male--v1.png"
-                            alt="checked-user-male--v1"
-                        />
-                    </div>
-                </div>
-                <div className="nav-ele last">
-                    <RiArrowDropDownLine />
+                    {
+                        user ? (<Link  to='/logout'>Logout</Link>) : (<p>Hello</p>)
+                    }
                 </div>
             </nav>
             <div className="body-con">
