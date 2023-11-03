@@ -12,6 +12,7 @@ import "./homestyle.css";
 import { handleUploadClick } from "./uploadfile.jsx"
 
 function Home() {
+    const [dropdown, setDropdown] = useState(false)
     const [imageUrls, setImageUrls] = useState([]);
     const [imagePreview, setImagePreview] = useState(null);
     const [file, setFile] = useState([]);
@@ -57,6 +58,16 @@ function Home() {
         }
     };
 
+    const handleDropdown = () => {
+        setDropdown(dropdown === false ? true : false);
+    }
+
+    const handlelogin = () => {
+        //Navigate("/Login")
+    }
+    const handlelogout = () => {
+        //Navigate("/")
+    }
     return (
         <div>
             <nav className="mynav">
@@ -96,7 +107,11 @@ function Home() {
                     </div>
                 </div>
                 <div className="nav-ele last">
-                    <RiArrowDropDownLine />
+                    <RiArrowDropDownLine onClick={handleDropdown} />
+                    {dropdown && (<div className="drop_login_signup">
+                        <div className="soptions">Login</div>
+                        <div className="soptions">Logout</div>
+                    </div>)}
                 </div>
             </nav>
             <div className="body-con">
