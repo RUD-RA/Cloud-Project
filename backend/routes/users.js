@@ -29,15 +29,24 @@ router.post('/register', function(req, res) {
 
     docClient.get(params, function(err, data) {
         if (err) {
-            res.send({"error": "Could not check user"});
+            res.status(422).json({
+                success:false,
+                message:"Error occured during the process"
+            })
         } else {
             if (data.Item) {
-                res.send({"error": "Email already exists"});
+                res.status(422).json({
+                    success:false,
+                    message:"This email already exits"
+                })
             } else {
                 // Hash the password
                 bcrypt.hash(password, 10, function(err, hash) {
                     if (err) {
-                        return res.send({"error": "Could not hash password"});
+                        res.status(422).json({
+                            success:false,
+                            message:"Error occured during the process"
+                        })
                     }
 
                     var paramsWrite = {
@@ -50,9 +59,16 @@ router.post('/register', function(req, res) {
 
                     docClient.put(paramsWrite, function(err, data) {
                         if (err) {
-                            res.send({"error": "Could not register user"});
+                            res.status(422).json({
+                                success:false,
+                                message:"Error occured during the process"
+                            })
                         } else {
-                            res.send({"success": "User registered successfully"});
+                            res.status(201).json({
+                                success:true,
+                                currentUser:paramsWrite.Item.email,
+                                message:"Registration complete"
+                            })
                         }
                     });
                 });
@@ -75,19 +91,32 @@ router.post('/login', function(req, res) {
 
     docClient.get(params, function(err, data) {
         if (err) {
-            res.send({"error": "Could not check user"});
+            res.status(422).json({
+                success:false,
+                message:"Error occured during the process"
+            })
         } else {
             if (data.Item) {
                 // Compare the hashed password
                 bcrypt.compare(password, data.Item.password, function(err, result) {
                     if (result) {
-                        res.send({"success": "User logged in successfully"});
+                        res.status(201).json({
+                            success:true,
+                            currentUser:params.Key.email,
+                            message:"login complete"
+                        })
                     } else {
-                        res.send({"error": "Invalid password"});
+                        res.status(422).json({
+                            success:false,
+                            message:"Email or password incorrect"
+                        })
                     }
                 });
             } else {
-                res.send({"error": "User does not exist"});
+                res.status(422).json({
+                    success:false,
+                    message:"User does not exist"
+                })
             }
         }
     });
