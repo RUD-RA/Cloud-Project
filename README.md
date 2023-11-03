@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# Project Description: Image Sharing and Storage Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Frontend (React.js)
 
-## Available Scripts
+Your frontend is built using React.js, providing a user-friendly interface for interacting with the application. Users can perform the following actions:
 
-In the project directory, you can run:
+1. **View Images:** Users can browse and view a collection of images uploaded by themselves and other users. This is done by making requests to HTTP APIs.
 
-### `npm start`
+2. **Upload Images:** Users can upload their own images directly to the AWS S3 bucket. Pre-signed URLs are generated through the Node.js backend to enable secure and direct uploads to S3.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **Download Images:** Users can download images to their local devices by requesting pre-signed URLs through HTTP APIs.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Backend (Node.js)
 
-### `npm test`
+Node.js is used for implementing backend services, including user authentication, routing, and interaction with AWS services. Here's what the backend does:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **User Authentication (Amazon Cognito):** User authentication is handled through Amazon Cognito, a fully managed identity and access management service provided by AWS. Users can create accounts and securely log in using Cognito.
 
-### `npm run build`
+2. **Data Storage (DynamoDB):** User and application data, such as user profiles and image metadata, are stored in Amazon DynamoDB, a NoSQL database service provided by AWS. DynamoDB is used for efficient and scalable data storage.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **API Gateway:** AWS API Gateway is used to define and manage HTTP APIs. These APIs handle client requests and interact with Lambda functions.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. **AWS Lambda Functions:** Lambda functions are serverless compute services used for various tasks. In your project, you might have Lambda functions to handle different operations like image metadata retrieval and user management. These functions can be triggered by HTTP API requests, among other events.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. **AWS S3 Bucket:** AWS S3 is used to store and manage image files securely. Uploaded images are stored in S3 buckets. You can configure access permissions and use pre-signed URLs for secure uploads and downloads.
 
-### `npm run eject`
+## Project Flow
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. A user signs up or logs in through the frontend, and their credentials are authenticated through Amazon Cognito.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Authenticated users can upload images directly to the AWS S3 bucket using pre-signed URLs generated through the Node.js backend.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Users can browse and view images through the React frontend by making requests to HTTP APIs, which trigger Lambda functions to retrieve images from S3 and DynamoDB and serve them to the user.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Users can download images through the React frontend, which generates pre-signed URLs for secure downloads directly from the S3 bucket.
 
-## Learn More
+## Security and Permissions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Amazon Cognito is used for user authentication, providing a secure and managed identity system.
+- DynamoDB is used for efficient and scalable data storage.
+- Proper authentication and authorization mechanisms are implemented to ensure that users can only access and modify their data.
+- AWS IAM (Identity and Access Management) is used to manage permissions for Lambda functions, S3 buckets, DynamoDB, and other AWS services, ensuring data security.
