@@ -10,12 +10,15 @@ import { FiMoreVertical } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
 import "./homestyle.css";
 import { handleUploadClick } from "./uploadFile.jsx"
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'
 import { UserContext } from '../context/userContext.jsx'
 import { useContext } from 'react';
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 function Home() {
-    const { currentUser } = useContext(UserContext)
+    const { setUser, currentUser } = useContext(UserContext)
+    const navigate = useNavigate()
     const { user } = currentUser
     console.log(user)
     console.log(currentUser)
@@ -65,6 +68,19 @@ function Home() {
         }
     };
 
+    const handleLogout = async () => {
+        try {
+            const res = await axios.get("/api/logout")
+            toast.success(res.data.message)
+            setUser({ ...currentUser, user: null })
+            localStorage.removeItem('user')
+            navigate('/')
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div>
             <nav className="mynav">
@@ -99,7 +115,11 @@ function Home() {
 
                 <div className="nav-ele icons">
                     {
-                        user ? (<Link  to='/logout'>Logout</Link>) : (<p>Hello</p>)
+                        user ? (<Link to='/logout'><button onClick={handleLogout}>Logout</button></Link>) : (<img
+                            className="logo1"
+                            src="https://img.icons8.com/color/96/checked-user-male--v1.png"
+                            alt="checked-user-male--v1"
+                        />)
                     }
                 </div>
             </nav>
@@ -112,7 +132,17 @@ function Home() {
                                 <div className="title">{url.split('/').pop().split('.').slice(0, -1).join('.')}</div>
                                 {console.log(randomElement)}
                                 <div className="options">
-                                    <a href={url} target='_blank' rel='noreferrer'><BsDownload className='download' /> </a><FiMoreVertical />
+                                    {
+                                        user && (
+                                            <>
+                                                <a href={url} target='_blank' rel='noreferrer'>
+                                                    <BsDownload className='download' />
+                                                </a>
+                                                <FiMoreVertical />
+                                            </>
+                                        )
+                                    }
+
                                 </div>
                             </div>
                         </div>

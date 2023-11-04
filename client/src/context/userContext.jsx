@@ -1,20 +1,24 @@
-import { createContext,useState} from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const UserContext = createContext({
-    currentUser:{
-        user:null,
+    currentUser: {
+        user: null,
     },
-    setUser:()=>{}
+    setUser: () => { }
 })
 
-export const UserProvider = ({children})=>{
-    const [currentUser,setUser] = useState({
-        user:null,
-    })
+export const UserProvider = ({ children }) => {
+    const [currentUser, setUser] = useState({
+        user: JSON.parse(localStorage.getItem('user')) || null,
+    });
 
-    const values = {currentUser,setUser}
+    useEffect(() => {
+        localStorage.setItem('user', JSON.stringify(currentUser.user));
+    }, [currentUser]);
 
-   return(
-    <UserContext.Provider value={values}>{children}</UserContext.Provider>
-   )
+    const values = { currentUser, setUser }
+
+    return (
+        <UserContext.Provider value={values}>{children}</UserContext.Provider>
+    )
 }

@@ -122,8 +122,10 @@ router.post('/login', function(req, res) {
     });
 });
 
-router.get('/logout',function(res,req) {
-    res.send({"success": "Logged out successfull"});
+router.get('/logout',function(req,res) {
+    res.status(201).json({
+        message:"Logout successful"
+    })
 })
 
 module.exports = router;
