@@ -1,8 +1,8 @@
 import {useNavigate } from 'react-router-dom'
 import { useState,useContext} from 'react'
 import axios from 'axios'
-// import {toast} from 'react-toastify'
- import {UserContext} from '../context/userContext'
+import {toast} from 'react-toastify'
+import {UserContext} from '../context/userContext.jsx'
 
 const Register = () => {  
     const {setUser,currentUser} = useContext(UserContext)
@@ -31,14 +31,14 @@ const Register = () => {
             })
 
             if(res.data.success){
-                // toast.success(res.data.message)
+                toast.success(res.data.message)
                 setUser({...currentUser,user:res.data.currentUser})
                 navigate("/")
             }
         }
         catch(error){
             // console.log(error)
-            // toast.error(error.response.data.message)
+            toast.error(error.response.data.message)
         }
 
         setformData({email:"",password:""})

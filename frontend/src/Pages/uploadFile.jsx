@@ -7,7 +7,7 @@ export function handleUploadClick(file) {
     });
 
     const fileInput = document.getElementById("fileInput");
-    let filename = file
+    let filename = document.getElementById("fileName").value;
 
     if (fileInput.files.length > 0) {
         const selectedFile = fileInput.files[0];
