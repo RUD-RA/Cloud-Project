@@ -4,7 +4,6 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import {UserContext} from '../context/userContext.jsx'
 import './auth.css'
-
 const Register = () => {  
     const {setUser,currentUser} = useContext(UserContext)
     const navigate = useNavigate()
@@ -56,10 +55,10 @@ const Register = () => {
                 <div className="main-form">
                     <form>
                         <div className='form-group'>
-                            <input type='email' placeholder='Email' value={formData.email} onChange={handleChangeEmail}/>
+                            <input type='email' placeholder='Email' className="email" value={formData.email} onChange={handleChangeEmail}/>
                         </div>
                         <div className='form-group'>
-                            <input type='password' placeholder='Password' value={formData.password} onChange={handleChangePassword}/>
+                            <input type='password' placeholder='Password' className="pass" value={formData.password} onChange={handleChangePassword}/>
                         </div>
                     </form>
                     <div className="form-info">
