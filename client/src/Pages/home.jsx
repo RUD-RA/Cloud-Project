@@ -10,10 +10,8 @@ import { UserContext } from "../context/userContext.jsx";
 import { useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import "./homestyle.css";
 import { handleUploadClick } from "./uploadFile.jsx";
-
 function Home() {
   const { setUser, currentUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -66,7 +64,6 @@ function Home() {
       setImagePreview(URL.createObjectURL(selectedFile));
     }
   };
-
   const handleDropdown = () => {
     setDropdown(dropdown === false ? true : false);
   };

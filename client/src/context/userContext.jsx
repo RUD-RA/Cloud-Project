@@ -22,3 +22,4 @@ export const UserProvider = ({ children }) => {
         <UserContext.Provider value={values}>{children}</UserContext.Provider>
     )
 }
+
