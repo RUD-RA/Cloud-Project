@@ -92,9 +92,11 @@ function Home() {
                     />
                 </div>
                 <div className="nav-ele">
-                    <div className="create-ele " onClick={openmenu}>
+                    {
+                        user ? ( <div className="create-ele " onClick={openmenu}>
                         Create <RiArrowDropDownLine />
-                    </div>
+                      </div>):(<p>Create</p>)
+                    }
                 </div>
                 <div className="navsearch">
                     <div className="search-icon">
@@ -109,7 +111,7 @@ function Home() {
                 </div>
                 <div className="nav-ele">
                     <Link className='custom-link' to='/register'>
-                        <li>Reg</li>
+                        <li>Register</li>
                     </Link>
                 </div>
 

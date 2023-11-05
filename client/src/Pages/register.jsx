@@ -3,6 +3,7 @@ import { useState,useContext} from 'react'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import {UserContext} from '../context/userContext.jsx'
+import './auth.css'
 
 const Register = () => {  
     const {setUser,currentUser} = useContext(UserContext)
